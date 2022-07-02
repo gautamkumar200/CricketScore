@@ -105,6 +105,9 @@ public class MatchUtils {
 			
 			// print scoreboard
 			match.getTeams().get(inning_no).printScoreBoard();
+			
+			// rotate strike 
+			match.rotateStrike();
 		}
 
 	}
@@ -193,8 +196,9 @@ public class MatchUtils {
 			ballCount.ballCount++;
 
 			// get next player on strike
-			if (match.getTeams().get(inning_no).getNextPlayerToBat() != null)
-				match.setOnStrikePlayer(match.getTeams().get(inning_no).getNextPlayerToBat());
+			Player next_player = match.getTeams().get(inning_no).getNextPlayerToBat();
+			if (next_player!=null)
+				match.setOnStrikePlayer(next_player);
 			else {
 				throw new NoPlayerFoundException("No player is available");
 			}
